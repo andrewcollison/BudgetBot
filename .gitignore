@@ -131,3 +131,9 @@ dmypy.json
 BudgetMonitor/UpApi.env
 
 BudgetMonitor/personalToken.txt
+
+BudgetMonitor/transactionData.db
+
+BudgetMonitor/upBankData_acc.csv
+
+BudgetMonitor/upBankData.csv
