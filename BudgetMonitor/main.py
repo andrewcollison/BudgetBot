@@ -9,6 +9,8 @@ from upBank import pullData
 from bankDatabase import transactionDatabase
 from dataVis import displayData
 import sqlite3
+import os
+from dotenv import load_dotenv
 
 sns.set() # set plot style
 
@@ -21,6 +23,9 @@ sns.set() # set plot style
 def main():
 
     # Load in access token for Up Api
+    # load_dotenv('UpApi.env')
+    # token_key = os.getenv('apitoken')
+    # print(token_key)
     tokenFile = open('personalToken.txt', 'r')
     token_key =tokenFile.read()
     tokenFile.close()
@@ -36,7 +41,7 @@ def main():
     db_interface.acc_2_db(acc_data)
     
     # Plot spending by sub category
-    displayData.catData(trans_data)
+    # displayData.catData(trans_data)
 
 
 if __name__ == "__main__":

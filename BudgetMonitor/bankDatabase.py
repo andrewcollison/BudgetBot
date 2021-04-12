@@ -39,7 +39,7 @@ class transactionDatabase():
                     conn = sqlite3.connect(self.tran_db_name)
                     sql_command = "INSERT INTO {db_table}(dateTime, name, id, value, type)\
                             VALUES ('{dateTime}', '{name}' , '{id}', '{value}', '{type}')"\
-                                    .format(db_table = self.acc_db_table, dateTime = df.dateTime[i], name = df.name[i], id = df.id[i], value = df.balance[i], type = df.type[i])
+                                    .format(db_table = self.acc_db_table, dateTime = df.dateTime[i], name = df.name[i], id = df.id[i], value = df.value[i], type = df.type[i])
                     conn.execute(sql_command)
                     conn.commit()
                     conn.close()
