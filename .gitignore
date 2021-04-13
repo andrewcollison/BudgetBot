@@ -137,3 +137,5 @@ BudgetMonitor/transactionData.db
 BudgetMonitor/upBankData_acc.csv
 
 BudgetMonitor/upBankData.csv
+
+BudgetMonitor/UpBankApp.env

@@ -28,8 +28,8 @@ class pullData():
 
         d = {'name': acc_name, 'id': acc_id, 'value': acc_value, 'type': acc_type, 'dateTime': acc_time}
         df = pd.DataFrame(d)
-        df.to_csv('upBankData_acc.csv')
-        print(df)
+        # df.to_csv('upBankData_acc.csv')
+        # print(df)
         return df
 
     def pull_transactions(self):
@@ -56,6 +56,6 @@ class pullData():
         
         d = {'id': ids, 'dateTime': date_settled, 'value': value, 'description': vendor, 'parentCategory': parent_cat, 'subCategory': sub_cat}
         df = pd.DataFrame(d)
-        df.to_csv('upBankData.csv')
-        print(df)
+        # df.to_csv('upBankData.csv')
+        # print(df)
         return df
