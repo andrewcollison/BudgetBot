@@ -10,7 +10,7 @@ from bankDatabase import transactionDatabase
 from dataVis import displayData
 import sqlite3
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 sns.set() # set plot style
 
