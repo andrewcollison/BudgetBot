@@ -1,4 +1,4 @@
-salary = 67000.00
+salary = 77000.00
 tax = 13322.00
 hexDebtRepayment = 2345.00
 
@@ -70,10 +70,3 @@ print("Piss buffer (weekly): $" + str(round(weeklyOverSpend, 2)))
 rent_per = ((((167.50)*4)*12)/postTaxIncome)*100
 
 print("Rent as a percentage of post tax income: " + str(round(rent_per, 2)) + "%")
-
-
-
-
-
-
-

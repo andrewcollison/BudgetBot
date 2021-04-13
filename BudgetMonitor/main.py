@@ -18,15 +18,15 @@ from UpEmailNotification import Gmail
 sns.set() # set plot style
 
 """ ToDo
-1) Remove the print to csv feature. Replace it by pulling the data from the sql database.
-    This allows data to be edited in the database without conflicting.
+1) Fix csv output 
+    - Remove the print to csv feature.                          => DONE
+    - Replace it by pulling the data from the sql database. 
 
 2) Add email notification for when script runs correctly. 
+    - Send confirmation of script running                        => DONE
     - Include a summary in email
     - Include graph in email of weeks spending 
 """
-
-
 
 def main():
 
@@ -35,11 +35,7 @@ def main():
     token_key = os.getenv('api_token')
     email_user = os.getenv('EMAIL_USER')
     email_pass = os.getenv('EMAIL_PASS')
-    # print(token_key)
-    # tokenFile = open('personalToken.txt', 'r')
-    # token_key =tokenFile.read()
-    # tokenFile.close()
-
+    
     # Pull account and transaction data
     upApi = pullData(token_key)
     trans_data = upApi.pull_transactions()
