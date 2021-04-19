@@ -15,6 +15,7 @@ from upBank import pullData
 from bankDatabase import transactionDatabase
 from dataProcess import processData
 from UpEmailNotification import Gmail
+from disp_data import budget_expenses
 
 sns.set() # set plot style
 
@@ -32,7 +33,7 @@ sns.set() # set plot style
 3) Actual Vs Allowed Expenses
     - Import budget requirements from excel spreadsheet         => DONE
     - Compare acatual spending with budget outlay
-    - vialise data for weekly monthly and yearly budget
+    - vialise data for weekly monthly and yearly budget         => DONE
     - Calulate remaning funds 
     - Email notification when spending exceeds set limit
 
@@ -58,16 +59,20 @@ def main():
     
     # Pull from data base
     fd = datetime.now()
-    sd = fd + timedelta(days=-60)
+    sd = fd + timedelta(days=-30)
 
     fd = fd.astimezone().isoformat()
     sd = sd.astimezone().isoformat()   
 
     data = db_interface.pull_from_tran_db(sd, fd)
-    df_acc_expenses = processData.acctual_expenses(data)
-    df_budget_expenses = processData.budget_expenses()
+    # Process and analyze data
+    process_data = processData()
+    df_acc_expenses = process_data.acctual_expenses(data)
+    df_budget_expenses = process_data.budget_expenses()
 
-    # displayData.catData(trans_data)
+    # Visualize data
+    displayData = budget_expenses('monthly')
+    displayData.cat_expenses(df_acc_expenses, df_budget_expenses)
     
     # Send Email Notification
     # gm = Gmail(email_user, email_pass)

@@ -4,16 +4,19 @@ import pandas as pd
 
 class processData(): 
 
-    # def __init__(self):       
-    #     pass
+    def __init__(self):       
+        pass
 
-    def acctual_expenses(df):
-        df_sub = df.groupby(df.subCategory)['value'].sum()
+    def acctual_expenses(self, df):
+        df_sub = df.groupby(df.subCategory, as_index = True)['value'].sum()
+        
+        df_sub.drop(index='None' , inplace=True)
+        df_sub = abs(df_sub)
         print(df_sub)
-
+        return df_sub
         
 
-    def budget_expenses():
+    def budget_expenses(self):
         # Load in data from budget spreadsheet        
         df = pd.read_excel('costs.xlsx', 'costs')
         df['YearlyCosts'] = None
@@ -28,10 +31,12 @@ class processData():
         df['YearlyCosts'] = (df.Cost).where(df['Period'] == 'yearly', other = df.YearlyCosts)          
 
         # Return table that has budget by category on a weekly, monthly and yearly basis
-        df_parent = df.groupby(df.ParentCategory)['YearlyCosts'].sum()
-        df_sub = df.groupby(df.SubCategory)['YearlyCosts'].sum()
+        # df_parent = df.groupby(df.ParentCategory)['YearlyCosts'].sum()
+        df_sub = df.groupby(df.SubCategory, as_index = True)['YearlyCosts'].sum()
         # print(df_parent)
-        print(df_sub)
+        # print(df_sub)
+
+        return df_sub
         
         
 

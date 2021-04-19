@@ -56,6 +56,6 @@ class pullData():
         
         d = {'id': ids, 'dateTime': date_settled, 'value': value, 'description': vendor, 'parentCategory': parent_cat, 'subCategory': sub_cat}
         df = pd.DataFrame(d)
-        df.to_csv('upBankData.csv')
+        # df.to_csv('upBankData.csv')
         # print(df)
         return df
