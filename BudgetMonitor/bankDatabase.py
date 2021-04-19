@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 import numpy as np
-
+from datetime import datetime, timedelta
 
 
 class transactionDatabase():
@@ -50,6 +50,43 @@ class transactionDatabase():
             print('Account database write failed')
         
 
-    def pull_from_db(self):
+    def pull_from_tran_db(self, date_from, date_to):
         # Insert code to filter data and pull from database
-        pass
+        try:
+            conn = sqlite3.connect(self.tran_db_name)
+            # cursor = conn.cursor()
+            sql_command = """SELECT * FROM {db_table} WHERE DATETIME BETWEEN '{sd}' and '{fd}'"""\
+                .format(db_table = self.tran_db_table, sd = date_from, fd = date_to)
+
+            df = pd.read_sql(sql_command, conn)
+            # print(df)
+
+            # cursor.execute(sql_command)
+            # result = cursor.fetchall()
+            # print(result)
+
+            conn.commit()
+            conn.close()
+
+        except OSError as err:
+            print("Data retrieval failed")
+            print(err)
+
+
+        return df
+
+
+def main():
+
+    db_interface = transactionDatabase('transactionData.db')
+
+    fd = datetime.now()
+    sd = fd + timedelta(days=-7)
+
+    fd = fd.astimezone().isoformat()
+    sd = sd.astimezone().isoformat()
+
+    db_interface.pull_from_tran_db(sd, fd)
+
+if __name__ == "__main__":
+    main()

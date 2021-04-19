@@ -3,7 +3,7 @@ import requests
 import json
 import pandas as pd
 import numpy as np
-import datetime
+from datetime import datetime
 
 class pullData():
     def __init__(self, token_key):
@@ -17,7 +17,7 @@ class pullData():
         acc_name = []
         acc_value = []
         acc_type = []
-        time_now = datetime.datetime.now().astimezone().isoformat()
+        time_now = datetime.now().astimezone().isoformat()
         acc_time = []
         for i in range(len(response['data'])):
             acc_id.append(response['data'][i]['id'])
@@ -56,6 +56,6 @@ class pullData():
         
         d = {'id': ids, 'dateTime': date_settled, 'value': value, 'description': vendor, 'parentCategory': parent_cat, 'subCategory': sub_cat}
         df = pd.DataFrame(d)
-        # df.to_csv('upBankData.csv')
+        df.to_csv('upBankData.csv')
         # print(df)
         return df

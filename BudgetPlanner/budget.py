@@ -1,4 +1,4 @@
-salary = 77000.00
+salary = 67000.00
 tax = 13322.00
 hexDebtRepayment = 2345.00
 
@@ -12,7 +12,7 @@ weeklyIncome = (postTaxIncome/12)/4
 print("Post tax income (weekly): $" + str(weeklyIncome)) 
 
 def weeklyCosts():
-    rent = 167.50
+    rent = 0
     gym = 14.00
     food = 150.00
     carLoan = 0
@@ -27,7 +27,7 @@ def monthlyCosts():
     elec = ((711.00)/4)/4
     internet = 90.00/4.00
     fuel = 80.00
-    mortage = 0
+    mortage = 1500
     games = 20.00
     carLoan = 0
     fixedMonthlyCosts = [netflix, spotify, phone, elec, internet, fuel, mortage, games, carLoan]
@@ -39,7 +39,7 @@ def yearlyCosts():
     insurance = 308.93
     pinkSlip = 40
     microsoft = 90
-    healthIns = 1300
+    healthIns = 747.60
     fixedYearlyCosts = [carRego, insurance, pinkSlip, microsoft, healthIns]
 
     return sum(fixedYearlyCosts)
