@@ -59,7 +59,7 @@ def main():
     
     # Pull from data base
     fd = datetime.now()
-    sd = fd + timedelta(days=-30)
+    sd = fd + timedelta(days=-7)
 
     fd = fd.astimezone().isoformat()
     sd = sd.astimezone().isoformat()   
@@ -71,7 +71,7 @@ def main():
     df_budget_expenses = process_data.budget_expenses()
 
     # Visualize data
-    displayData = budget_expenses('monthly')
+    displayData = budget_expenses('weekly')
     displayData.cat_expenses(df_acc_expenses, df_budget_expenses)
     
     # Send Email Notification

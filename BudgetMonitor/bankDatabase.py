@@ -86,7 +86,7 @@ def main():
     fd = fd.astimezone().isoformat()
     sd = sd.astimezone().isoformat()
 
-    db_interface.pull_from_tran_db(sd, fd)
+    print(db_interface.pull_from_tran_db(sd, fd))
 
 if __name__ == "__main__":
     main()
