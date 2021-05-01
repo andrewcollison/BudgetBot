@@ -40,9 +40,17 @@ def main():
     email_user = os.getenv('EMAIL_USER')
     email_pass = os.getenv('EMAIL_PASS')
 
-    
+    html_message = '''<body style="margin: 0; padding: 0;">
+    <table role="presentation" border="1" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td>
+                <p style="margin: 0;">Hello!</p>
+            </td>
+        </tr>
+    </table>
+</body> '''
     gm = Gmail(email_user, email_pass)
-    gm.send_message('howdy Cowboy', 'gday cunt')
+    gm.send_message('howdy Cowboy', html_message)
 
 if __name__ == "__main__":
     main()

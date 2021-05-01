@@ -12,7 +12,7 @@ class processData():
         
         df_sub.drop(index='None' , inplace=True)
         df_sub = abs(df_sub)
-        print(df_sub)
+        # print(df_sub)
         return df_sub
         
 
@@ -33,9 +33,7 @@ class processData():
         # Return table that has budget by category on a weekly, monthly and yearly basis
         # df_parent = df.groupby(df.ParentCategory)['YearlyCosts'].sum()
         df_sub = df.groupby(df.SubCategory, as_index = True)['YearlyCosts'].sum()
-        # print(df_parent)
-        # print(df_sub)
-
+        
         return df_sub
         
         

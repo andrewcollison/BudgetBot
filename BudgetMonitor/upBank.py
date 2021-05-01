@@ -33,7 +33,7 @@ class pullData():
         return df
 
     def pull_transactions(self):
-        response = requests.get("https://api.up.com.au/api/v1/transactions/?page[size]=100", headers = self.my_headers).json()
+        response = requests.get("https://api.up.com.au/api/v1/transactions/?page[size]=30", headers = self.my_headers).json()
         
         ids = []
         value = []

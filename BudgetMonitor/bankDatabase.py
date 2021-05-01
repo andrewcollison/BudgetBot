@@ -2,6 +2,8 @@ import sqlite3
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
+import os
+import sys
 
 
 class transactionDatabase():
@@ -10,9 +12,41 @@ class transactionDatabase():
         self.tran_db_table = 'transactions'
         self.acc_db_table = 'accounts'
 
+        if os.path.isfile(databaseName):
+            print ("Databse detected")
+        else:
+            print ("Creating Database")
+            # Create Database
+            conn = sqlite3.connect(self.tran_db_name)
+            c = conn.cursor()
+
+            # Create table: transactions
+            c.execute('''CREATE TABLE Transactions \
+             ([transactionID] text PRIMARY KEY,[datetime] date, [value] integer, [description] text, [parentCategory] text, [subCategory] text)''')
+   
+            # Create table: accounts
+            c.execute('''CREATE TABLE accounts \
+             ([datetime] date, [name] text, [id] text, [value] integer, [type] text)''')
+
+            conn.commit()    
+
     def trans_2_db(self, df):
         # Pulls the last 100 transactions and adds them to a database.
-        # Only data not already in the database will be entered into the database. The transaction id in the sql database is set to a unique data type
+        # Only data not already in the database will be entered into the database. The transaction id in the sql database is set to a unique data type        
+        # Remove old data and update with most recent
+        conn = sqlite3.connect(self.tran_db_name)
+
+        try:
+            for i in range(len(df['id'])):                     
+                sql_delete = "DELETE FROM transactions WHERE transactionID = ?"
+                conn.execute(sql_delete, (df.id[i],))
+                conn.commit()
+                # conn.close()
+        
+        except OSError as err:
+            print("Database Error: Failed to delete from database")
+            print(err)
+
         try:
             for i in range(len(df['id'])):
                 try:
@@ -24,12 +58,15 @@ class transactionDatabase():
                                         parentCategory = df.parentCategory[i], subCategory = df.subCategory[i])
                     conn.execute(sql_command)
                     conn.commit()
-                    conn.close()
+                    # conn.close()                    
                 except:
                     print("entry already in database")
-
-        except:
+                    
+        except OSError as err:
             print('Database write failed')
+            print(err)
+
+        conn.close()
 
     def acc_2_db(self, df):
         # Used to track account balance with time
@@ -43,12 +80,12 @@ class transactionDatabase():
                     conn.execute(sql_command)
                     conn.commit()
                     conn.close()
-                except:
+                except OSError as err:
                     print("acc database error: sql input")
+                    print(err)
 
         except:
             print('Account database write failed')
-        
 
     def pull_from_tran_db(self, date_from, date_to):
         # Insert code to filter data and pull from database
@@ -57,14 +94,8 @@ class transactionDatabase():
             # cursor = conn.cursor()
             sql_command = """SELECT * FROM {db_table} WHERE DATETIME BETWEEN '{sd}' and '{fd}'"""\
                 .format(db_table = self.tran_db_table, sd = date_from, fd = date_to)
-
+                
             df = pd.read_sql(sql_command, conn)
-            # print(df)
-
-            # cursor.execute(sql_command)
-            # result = cursor.fetchall()
-            # print(result)
-
             conn.commit()
             conn.close()
 
@@ -74,6 +105,9 @@ class transactionDatabase():
 
 
         return df
+
+
+
 
 
 def main():
