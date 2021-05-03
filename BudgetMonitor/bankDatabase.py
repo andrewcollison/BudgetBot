@@ -50,13 +50,9 @@ class transactionDatabase():
         try:
             for i in range(len(df['id'])):
                 try:
-                    conn = sqlite3.connect(self.tran_db_name)
-                    sql_command = "INSERT INTO {db_table}(transactionID, datetime, value, description, parentCategory, subCategory)\
-                            VALUES ('{id}', '{dateTime}', '{value}', '{description}',\
-                                '{parentCategory}', '{subCategory}')"\
-                                    .format(db_table = self.tran_db_table, id = df.id[i], dateTime = df.dateTime[i], value = df.value[i], description = df.description[i],\
-                                        parentCategory = df.parentCategory[i], subCategory = df.subCategory[i])
-                    conn.execute(sql_command)
+                    sql_command = "INSERT INTO transactions (transactionID, datetime, value, description, parentCategory, subCategory) VALUES (?, ?, ?, ?, ?, ?);"
+                    inst_data = ( df.id[i], df.dateTime[i], df.value[i], df.description[i], df.parentCategory[i], df.subCategory[i])
+                    conn.execute(sql_command, inst_data)
                     conn.commit()
                     # conn.close()                    
                 except:
@@ -65,6 +61,8 @@ class transactionDatabase():
         except OSError as err:
             print('Database write failed')
             print(err)
+
+        
 
         conn.close()
 

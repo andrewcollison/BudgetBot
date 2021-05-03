@@ -58,6 +58,7 @@ def main():
     # # Save the transactions and accouint data into an SQL database
     db_interface = transactionDatabase('transactionData.db')
     db_interface.trans_2_db(trans_data)
+    print(trans_data.head(10))
     db_interface.acc_2_db(acc_data)
     
     # Pull from data base
@@ -75,8 +76,8 @@ def main():
 
 
     # Visualize data
-    # displayData = budget_expenses('weekly')
-    # displayData.cat_expenses(df_acc_expenses, df_budget_expenses)
+    displayData = budget_expenses('weekly')
+    displayData.cat_expenses(df_acc_expenses, df_budget_expenses)
 
     # Send Email Notification
     html_message = pd.DataFrame(df_acc_expenses.reset_index()).to_html()
