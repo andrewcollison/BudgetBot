@@ -111,10 +111,8 @@ class transactionDatabase():
 def main():
 
     db_interface = transactionDatabase('transactionData.db')
-
     fd = datetime.now()
     sd = fd + timedelta(days=-7)
-
     fd = fd.astimezone().isoformat()
     sd = sd.astimezone().isoformat()
 

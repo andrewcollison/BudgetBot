@@ -1,6 +1,4 @@
-import re
 import requests 
-import json
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -12,7 +10,7 @@ class pullData():
         
     def pull_accounts(self):        
         response = requests.get("https://api.up.com.au/api/v1/accounts", headers = self.my_headers).json()
-        
+        # print(response)
         acc_id = []
         acc_name = []
         acc_value = []
