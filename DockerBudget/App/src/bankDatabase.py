@@ -23,7 +23,7 @@ class transactionDatabase():
         conn = mydb.cursor()
     # Create table: transactions
         # mydb = connect(host="localhost", user="root", password="ironman", database = 'transactionData')
-        conn.execute('''CREATE TABLE IF NOT EXISTS Transactions (transactionID VARCHAR(100) PRIMARY KEY ,datetime TIMESTAMP, value DECIMAL(10,2), description VARCHAR(255), parentCategory VARCHAR(255), subCategory VARCHAR(255))''')
+        conn.execute('''CREATE TABLE IF NOT EXISTS transactions (transactionID VARCHAR(100) PRIMARY KEY ,datetime TIMESTAMP, value DECIMAL(10,2), description VARCHAR(255), parentCategory VARCHAR(255), subCategory VARCHAR(255))''')
 
         # Create table: accounts
         conn.execute('''CREATE TABLE IF NOT EXISTS accounts \
@@ -42,7 +42,7 @@ class transactionDatabase():
 
         try:
             for i in range(len(df['id'])):                     
-                sql_delete = "DELETE FROM Transactions WHERE transactionID = %s"
+                sql_delete = "DELETE FROM transactions WHERE transactionID = %s"
                 conn.execute(sql_delete, (df.id[i],))
                 mydb.commit()
                 
@@ -54,7 +54,7 @@ class transactionDatabase():
         try:
             for i in range(len(df['id'])):
                 try:
-                    sql_command = "INSERT INTO Transactions (transactionID, datetime, value, description, parentCategory, subCategory) VALUES (%s, %s, %s, %s, %s, %s);"
+                    sql_command = "INSERT INTO transactions (transactionID, datetime, value, description, parentCategory, subCategory) VALUES (%s, %s, %s, %s, %s, %s);"
                     inst_data = ( df.id[i], df.dateTime[i], df.value[i], df.description[i], df.parentCategory[i], df.subCategory[i])
                     conn.execute(sql_command, inst_data)
                     mydb.commit()

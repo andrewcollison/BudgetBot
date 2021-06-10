@@ -3,6 +3,7 @@ import numpy as np
 import os
 from datetime import datetime, timedelta
 import time
+from dotenv import load_dotenv
 
 from upBank import pullData
 from bankDatabase import transactionDatabase
@@ -11,6 +12,9 @@ from bankDatabase import transactionDatabase
 def main():
     # Load in access token for Up Api    
     token_key = os.environ['upKey']
+    # load_dotenv('UpBankApp.env')
+    # token_key = os.getenv('api_token')
+    print(token_key)
     
     # # Pull account and transaction data
     upApi = pullData(token_key)
