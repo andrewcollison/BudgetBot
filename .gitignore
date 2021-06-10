@@ -139,3 +139,5 @@ BudgetMonitor/upBankData_acc.csv
 BudgetMonitor/upBankData.csv
 
 BudgetMonitor/UpBankApp.env
+
+DockerBudget/App/src/UpBankApp.env

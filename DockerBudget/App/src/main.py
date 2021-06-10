@@ -23,9 +23,7 @@ def main():
     db_interface.acc_2_db(acc_data)
 
 
-if __name__ == "__main__":
-    while True:
-        print('running now')
-        main()
-        time.sleep(60)
+if __name__ == "__main__":        
+    main()
+        
         
