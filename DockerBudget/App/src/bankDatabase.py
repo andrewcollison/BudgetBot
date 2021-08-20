@@ -8,6 +8,7 @@ class transactionDatabase():
         self.tran_db_name = databaseName
         self.tran_db_table = 'transactions'
         self.acc_db_table = 'accounts'
+        self.binance_db_table = 'binanceData'
         self.db_host = "192.168.0.222"
         self.db_port = 4306
         self.db_usr = "root"
@@ -21,7 +22,7 @@ class transactionDatabase():
         
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)
         conn = mydb.cursor()
-    # Create table: transactions
+        # Create table: transactions
         # mydb = connect(host="localhost", user="root", password="ironman", database = 'transactionData')
         conn.execute('''CREATE TABLE IF NOT EXISTS transactions (transactionID VARCHAR(100) PRIMARY KEY ,datetime TIMESTAMP, value DECIMAL(10,2), description VARCHAR(255), parentCategory VARCHAR(255), subCategory VARCHAR(255))''')
 
@@ -29,9 +30,12 @@ class transactionDatabase():
         conn.execute('''CREATE TABLE IF NOT EXISTS accounts \
         (datetime DATETIME, name VARCHAR(255), id VARCHAR(255), value DECIMAL(10,2), type VARCHAR(255))''')
         mydb.commit()
-        mydb.close()
+        
 
-            
+        # Create table: Binance Data
+        conn.execute('''CREATE TABLE IF NOT EXISTS binanceData (datetime DATETIME, asset VARCHAR(255), usd DECIMAL(10,2), free DECIMAL(10,8), locked DECIMAL(10,8))''')
+        mydb.commit()
+        mydb.close()
 
     def trans_2_db(self, df):
         # Pulls the last 100 transactions and adds them to a database.
@@ -72,6 +76,8 @@ class transactionDatabase():
         # Used to track account balance with time
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)
         conn = mydb.cursor()
+        
+        # print(df.dtypes)
         try:
             for i in range(len(df['id'])):
                 try:
@@ -89,27 +95,26 @@ class transactionDatabase():
         except:
             print('Account database write failed')
 
-    # def pull_from_tran_db(self, date_from, date_to):
-    #     # Insert code to filter data and pull from database
-    #     try:
-    #         mydb = connect(host="localhost", user="root", password="ironman", database = self.tran_db_name)
-    #         conn = mydb.cursor()
-    #         # cursor = conn.cursor()
-    #         sql_command = """SELECT * FROM Transactions WHERE DATETIME BETWEEN '{sd}' and  '{fd}'""".format(sd = date_from, fd = date_to)        
-    #         df = pd.read_sql(sql_command, con = mydb)
-    #         mydb.commit()
-    #         mydb.close()
-    #     except Error as err:
-    #         print("Data retrieval failed")
-    #         print(err)
+    def binance_2_db(self, df):
+        mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)
+        conn = mydb.cursor()
+        # print(df)
+        # print(df.dtypes)
+        try:
+            for i in range(len(df['asset'])):
+                try:                
+                    sql_command = "INSERT INTO binanceData (datetime, asset, USD, free, locked) VALUES (%s, %s , %s, %s, %s)"
+                    inst_data = (df.time[i], df.asset[i], df.USD[i], df.free[i], df.locked[i])
+                    conn.execute(sql_command, inst_data)
+                    mydb.commit()
+                    
+                except OSError as err:
+                    print("binance database error: sql input")
+                    print(err)
 
-    #     mydb.close()
-    #     return df
-
-
-
-
-
+        except:
+            print('Binance database write failed')
+   
 def main():
 
     db_interface = transactionDatabase('transactionData')
