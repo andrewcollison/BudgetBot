@@ -15,8 +15,8 @@ def main():
     # token_key = os.environ['upKey']
     # bin_key = os.environ['bin_key']
     # bin_secret = os.environ['bin_secret']
-    # bin_key = '***REMOVED***'
-    # bin_secret = '***REMOVED***'
+    # bin_key = 'OmkFFB1UaQDx8rAiD5C78bE4JOXw4O9V9xxnY2lN5rP6T8cvY8sYRDA0ANub5f6I'
+    # bin_secret = 'etDykKq85CUDP6p0BGNPrOO4E3juffM4YM9QDwUIJVEQ8murJDPcMbm8WgF4kcqg'
     
     load_dotenv('UpBankApp.env')
     token_key = os.getenv('api_token')
