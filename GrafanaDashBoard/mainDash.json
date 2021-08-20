@@ -1,0 +1,2215 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 3,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 13,
+        "panels": [],
+        "title": "Summary",
+        "type": "row"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 1
+        },
+        "id": 8,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^Up Account$/",
+            "values": false
+          },
+          "text": {
+            "titleSize": 50,
+            "valueSize": 50
+          },
+          "textMode": "value"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  name AS metric,\n  value\nFROM accounts\nWHERE\n  $__timeFilter(datetime) AND\n  name = 'Up Account'\nORDER BY datetime\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Up Account",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 3,
+          "y": 1
+        },
+        "id": 9,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^value$/",
+            "values": false
+          },
+          "text": {
+            "titleSize": 50,
+            "valueSize": 50
+          },
+          "textMode": "value"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": false,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  value\nFROM accounts\nWHERE\n  name = '🏠 Rent'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "accounts",
+            "timeColumn": "datetime",
+            "timeColumnType": "datetime",
+            "where": [
+              {
+                "datatype": "varchar",
+                "name": "",
+                "params": [
+                  "name",
+                  "=",
+                  "'🏠 Rent'"
+                ],
+                "type": "expression"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Rent",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [
+              {
+                "$$hashKey": "object:227",
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 5,
+          "y": 1
+        },
+        "id": 10,
+        "interval": null,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {
+            "titleSize": 50,
+            "valueSize": 50
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "name",
+            "rawQuery": false,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  name AS metric,\n  value\nFROM accounts\nWHERE\n  name = '💰 Savings'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "accounts",
+            "timeColumn": "datetime",
+            "timeColumnType": "datetime",
+            "where": [
+              {
+                "datatype": "varchar",
+                "name": "",
+                "params": [
+                  "name",
+                  "=",
+                  "'💰 Savings'"
+                ],
+                "type": "expression"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Savings",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "prefix: US$"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 8,
+          "y": 1
+        },
+        "id": 46,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  $__timeGroupAlias(datetime,$__interval),\n  sum(usd) AS \"usd\"\nFROM binanceData\nGROUP BY 1\nORDER BY $__timeGroup(datetime,$__interval)",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "free"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "binanceData",
+            "timeColumn": "datetime",
+            "timeColumnType": "datetime",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "title": "Total Crypto Holdings",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  10
+                ],
+                "type": "lt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "B",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "avg"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "name": "Account Balance alert",
+          "noDataState": "no_data",
+          "notifications": []
+        },
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "upBank-MySQL",
+        "decimals": 2,
+        "description": "Tracks account balance",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 11,
+          "x": 0,
+          "y": 4
+        },
+        "hiddenSeries": false,
+        "hideTimeOverride": false,
+        "id": 2,
+        "legend": {
+          "avg": false,
+          "current": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": false
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.7",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:418",
+            "alias": "Up Account",
+            "yaxis": 1
+          },
+          {
+            "$$hashKey": "object:419",
+            "alias": "🏠 Rent",
+            "yaxis": 1
+          },
+          {
+            "$$hashKey": "object:420",
+            "alias": "💰 Savings",
+            "yaxis": 2
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  name AS metric,\n  value\nFROM accounts\nWHERE\n  $__timeFilter(datetime) AND\n  name = '💰 Savings'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "accounts",
+            "timeColumn": "datetime",
+            "timeColumnType": "datetime",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          },
+          {
+            "format": "time_series",
+            "group": [],
+            "hide": false,
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  name AS metric,\n  value\nFROM accounts\nWHERE\n  $__timeFilter(datetime) AND\n  name = 'Up Account'\nORDER BY datetime\n",
+            "refId": "B",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          },
+          {
+            "format": "time_series",
+            "group": [],
+            "hide": false,
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  name AS metric,\n  value\nFROM accounts\nWHERE\n  $__timeFilter(datetime) AND\n  name = '🏠 Rent'\nORDER BY datetime\n",
+            "refId": "C",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "fill": false,
+            "line": false,
+            "op": "lt",
+            "value": 10,
+            "visible": true
+          }
+        ],
+        "timeFrom": "80d",
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Account Balance",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:344",
+            "format": "none",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:345",
+            "format": "none",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "upBank-MySQL",
+        "description": "Required money for a house deposit",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "max": 20000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 1000
+                },
+                {
+                  "color": "yellow",
+                  "value": 5000
+                },
+                {
+                  "color": "blue",
+                  "value": 10000
+                },
+                {
+                  "color": "green",
+                  "value": 15000
+                }
+              ]
+            },
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 0,
+          "y": 13
+        },
+        "id": 4,
+        "links": [],
+        "options": {
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  name AS metric,\n  value\nFROM accounts\nWHERE\n  $__timeFilter(datetime) AND\n  name = '💰 Savings'\nORDER BY datetime\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Savings Target",
+        "type": "gauge"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "upBank-MySQL",
+        "description": "Required money for a house deposit",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 2,
+          "x": 3,
+          "y": 13
+        },
+        "id": 36,
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "table",
+            "group": [
+              {
+                "params": [
+                  "$__interval",
+                  "none"
+                ],
+                "type": "time"
+              }
+            ],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  $__timeGroupAlias(datetime,$__interval),\n  sum(value) AS \"value\"\nFROM accounts\nGROUP BY 1\nORDER BY $__timeGroup(datetime,$__interval)",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                },
+                {
+                  "params": [
+                    "sum"
+                  ],
+                  "type": "aggregate"
+                },
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "table": "accounts",
+            "timeColumn": "datetime",
+            "timeColumnType": "datetime",
+            "where": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Total Cash",
+        "type": "stat"
+      },
+      {
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 5,
+          "y": 13
+        },
+        "hideTimeOverride": true,
+        "id": 38,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  value\nFROM transactions\nWHERE\n  $__timeFilter(datetime) AND\n  parentCategory != 'None'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "transactions",
+            "timeColumn": "datetime",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "365d",
+        "title": "Total Expenses",
+        "type": "stat"
+      },
+      {
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 5,
+          "y": 16
+        },
+        "id": 39,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {
+            "titleSize": 50,
+            "valueSize": 50
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  value\nFROM transactions\nWHERE\n  description = 'Accenture' or \n  description = 'Vinsi' OR\n  description = 'ATO'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "transactions",
+            "timeColumn": "datetime",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "datatype": "varchar",
+                "name": "",
+                "params": [
+                  "description",
+                  "=",
+                  "'Accenture'"
+                ],
+                "type": "expression"
+              }
+            ]
+          }
+        ],
+        "title": "Total Income",
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 19
+        },
+        "id": 15,
+        "panels": [],
+        "title": "Expenses",
+        "type": "row"
+      },
+      {
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 0,
+          "y": 20
+        },
+        "hideTimeOverride": true,
+        "id": 27,
+        "interval": null,
+        "options": {
+          "displayLabels": [
+            "name"
+          ],
+          "legend": {
+            "displayMode": "table",
+            "placement": "right",
+            "values": [
+              "value"
+            ]
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {}
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  parentCategory AS metric,\n  abs(value)\nFROM transactions\nWHERE\n  $__timeFilter(datetime) AND\n  parentCategory != 'None'\nORDER BY datetime\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "now/w",
+        "title": "Weekly Breakdown",
+        "type": "piechart"
+      },
+      {
+        "datasource": "upBank-MySQL",
+        "description": "Overall spending summary by category",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": null,
+              "filterable": false
+            },
+            "decimals": 2,
+            "displayName": "",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Time"
+                },
+                {
+                  "id": "unit",
+                  "value": "time: YYYY-MM-DD HH:mm:ss"
+                },
+                {
+                  "id": "custom.align",
+                  "value": null
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 4,
+          "y": 20
+        },
+        "id": 6,
+        "options": {
+          "showHeader": true
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "subCategory",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  parentCategory AS metric,\n  value\nFROM transactions\nWHERE\n  parentCategory != 'None'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "Transactions",
+            "timeColumn": "datetime",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "datatype": "varchar",
+                "name": "",
+                "params": [
+                  "parentCategory",
+                  "!=",
+                  "'None'"
+                ],
+                "type": "expression"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Spending Summary",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "includeTimeField": false,
+              "reducers": [
+                "sum"
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 7,
+          "y": 20
+        },
+        "id": 21,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  value\nFROM transactions\nWHERE\n  $__timeFilter(datetime) AND\n  parentCategory != 'None'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "sum(value)"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "transactions",
+            "timeColumn": "datetime",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              },
+              {
+                "datatype": "varchar",
+                "name": "",
+                "params": [
+                  "parentCategory",
+                  "!=",
+                  "'None'"
+                ],
+                "type": "expression"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "now/w",
+        "timeShift": null,
+        "type": "stat"
+      },
+      {
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 2,
+          "x": 7,
+          "y": 23
+        },
+        "id": 25,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "value"
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  value\nFROM transactions\nWHERE\n  $__timeFilter(datetime) AND\n  parentCategory != 'None'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "sum(value)"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "transactions",
+            "timeColumn": "datetime",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              },
+              {
+                "datatype": "varchar",
+                "name": "",
+                "params": [
+                  "parentCategory",
+                  "!=",
+                  "'None'"
+                ],
+                "type": "expression"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "now/M",
+        "timeShift": null,
+        "type": "stat"
+      },
+      {
+        "cacheTimeout": null,
+        "datasource": "upBank-MySQL",
+        "description": "Overall spending summary by category",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "max": 3000,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "light-blue",
+                  "value": 50
+                },
+                {
+                  "color": "super-light-orange",
+                  "value": 100
+                },
+                {
+                  "color": "#EF843C",
+                  "value": 150
+                },
+                {
+                  "color": "#E24D42",
+                  "value": 200
+                }
+              ]
+            },
+            "unit": "prefix: $"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 16,
+          "w": 9,
+          "x": 0,
+          "y": 26
+        },
+        "id": 11,
+        "links": [],
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true,
+          "text": {}
+        },
+        "pluginVersion": "7.5.7",
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "subCategory",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  subCategory AS metric,\n  abs(value)\nFROM transactions\nWHERE\n  parentCategory != 'None'\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "abs(value)"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "Transactions",
+            "timeColumn": "datetime",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "datatype": "varchar",
+                "name": "",
+                "params": [
+                  "parentCategory",
+                  "!=",
+                  "'None'"
+                ],
+                "type": "expression"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Spending Summary",
+        "type": "bargauge"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 42
+        },
+        "id": 44,
+        "panels": [],
+        "title": "Investments",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "upBank-MySQL",
+        "fieldConfig": {
+          "defaults": {
+            "unit": "currencyUSD"
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 9,
+          "x": 0,
+          "y": 43
+        },
+        "hiddenSeries": false,
+        "id": 42,
+        "legend": {
+          "avg": false,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.5.7",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:206",
+            "alias": "BTC",
+            "yaxis": 2
+          },
+          {
+            "$$hashKey": "object:217",
+            "alias": "ETH",
+            "yaxis": 1
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "format": "time_series",
+            "group": [],
+            "metricColumn": "asset",
+            "rawQuery": false,
+            "rawSql": "SELECT\n  datetime AS \"time\",\n  asset AS metric,\n  usd\nFROM binanceData\nWHERE\n  $__timeFilter(datetime)\nORDER BY datetime",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "usd"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "binanceData",
+            "timeColumn": "datetime",
+            "timeColumnType": "datetime",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": "24h",
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Binance Holdings",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:327",
+            "format": "currencyUSD",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:328",
+            "format": "currencyUSD",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 51
+        },
+        "id": 31,
+        "panels": [
+          {
+            "datasource": "upBank-MySQL",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "decimals": 2,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "prefix: $"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 3,
+              "w": 3,
+              "x": 0,
+              "y": 44
+            },
+            "id": 33,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "center",
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "sum"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "text": {
+                "titleSize": 50,
+                "valueSize": 50
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "7.5.7",
+            "targets": [
+              {
+                "format": "time_series",
+                "group": [],
+                "metricColumn": "none",
+                "rawQuery": false,
+                "rawSql": "SELECT\n  datetime AS \"time\",\n  value\nFROM transactions\nWHERE\n  description = 'Accenture'\nORDER BY datetime",
+                "refId": "A",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "column"
+                    }
+                  ]
+                ],
+                "table": "transactions",
+                "timeColumn": "datetime",
+                "timeColumnType": "timestamp",
+                "where": [
+                  {
+                    "datatype": "varchar",
+                    "name": "",
+                    "params": [
+                      "description",
+                      "=",
+                      "'Accenture'"
+                    ],
+                    "type": "expression"
+                  }
+                ]
+              }
+            ],
+            "title": "Accenture",
+            "type": "stat"
+          },
+          {
+            "datasource": "upBank-MySQL",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "decimals": 2,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "prefix: $"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 3,
+              "w": 3,
+              "x": 3,
+              "y": 44
+            },
+            "id": 35,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "sum"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "text": {
+                "titleSize": 50,
+                "valueSize": 50
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "7.5.7",
+            "targets": [
+              {
+                "format": "table",
+                "group": [],
+                "metricColumn": "none",
+                "rawQuery": false,
+                "rawSql": "SELECT\n  datetime AS \"time\",\n  value\nFROM transactions\nWHERE\n  description = 'Vinsi'\nORDER BY datetime",
+                "refId": "A",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "column"
+                    }
+                  ]
+                ],
+                "table": "transactions",
+                "timeColumn": "datetime",
+                "timeColumnType": "timestamp",
+                "where": [
+                  {
+                    "datatype": "varchar",
+                    "name": "",
+                    "params": [
+                      "description",
+                      "=",
+                      "'Vinsi'"
+                    ],
+                    "type": "expression"
+                  }
+                ]
+              }
+            ],
+            "title": "Vinsi",
+            "type": "stat"
+          },
+          {
+            "datasource": "upBank-MySQL",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "align": "center",
+                  "filterable": false
+                },
+                "decimals": 2,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "prefix: $"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 6,
+              "w": 6,
+              "x": 0,
+              "y": 47
+            },
+            "id": 29,
+            "options": {
+              "showHeader": true,
+              "sortBy": [
+                {
+                  "desc": true,
+                  "displayName": "time"
+                }
+              ]
+            },
+            "pluginVersion": "7.5.7",
+            "targets": [
+              {
+                "format": "table",
+                "group": [],
+                "metricColumn": "none",
+                "rawQuery": true,
+                "rawSql": "SELECT\n  datetime AS \"time\",\n  value, description\nFROM transactions\nWHERE\n  parentCategory = 'None' AND\n  description = 'Vinsi' OR\n  description = 'Accenture' OR\n  description = 'ATO'\n  \nORDER BY datetime",
+                "refId": "A",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "column"
+                    }
+                  ]
+                ],
+                "table": "transactions",
+                "timeColumn": "datetime",
+                "timeColumnType": "timestamp",
+                "where": [
+                  {
+                    "datatype": "varchar",
+                    "name": "",
+                    "params": [
+                      "description",
+                      "=",
+                      "'Accenture'"
+                    ],
+                    "type": "expression"
+                  },
+                  {
+                    "datatype": "varchar",
+                    "name": "",
+                    "params": [
+                      "description",
+                      "=",
+                      "'Vinsi'"
+                    ],
+                    "type": "expression"
+                  },
+                  {
+                    "datatype": "varchar",
+                    "name": "",
+                    "params": [
+                      "parentCategory",
+                      "!=",
+                      "'None'"
+                    ],
+                    "type": "expression"
+                  }
+                ]
+              }
+            ],
+            "title": "Income",
+            "type": "table"
+          }
+        ],
+        "title": "Income",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 52
+        },
+        "id": 17,
+        "panels": [
+          {
+            "datasource": "upBank-MySQL",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "align": "center",
+                  "filterable": false
+                },
+                "decimals": 2,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                },
+                "unit": "currencyUSD"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 11,
+              "w": 9,
+              "x": 0,
+              "y": 22
+            },
+            "id": 19,
+            "options": {
+              "showHeader": true,
+              "sortBy": [
+                {
+                  "desc": true,
+                  "displayName": "time"
+                }
+              ]
+            },
+            "pluginVersion": "7.5.7",
+            "targets": [
+              {
+                "format": "table",
+                "group": [],
+                "metricColumn": "none",
+                "rawQuery": true,
+                "rawSql": "SELECT\n  datetime AS \"time\",\n  value,\n  subCategory,\n  description\nFROM transactions\nWHERE\n  $__timeFilter(datetime) AND\n  parentCategory != 'None'\nORDER BY datetime",
+                "refId": "A",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "column"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "subCategory"
+                      ],
+                      "type": "column"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "description"
+                      ],
+                      "type": "column"
+                    }
+                  ]
+                ],
+                "table": "transactions",
+                "timeColumn": "datetime",
+                "timeColumnType": "timestamp",
+                "where": [
+                  {
+                    "name": "$__timeFilter",
+                    "params": [],
+                    "type": "macro"
+                  },
+                  {
+                    "datatype": "varchar",
+                    "name": "",
+                    "params": [
+                      "parentCategory",
+                      "!=",
+                      "'None'"
+                    ],
+                    "type": "expression"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": "now/M",
+            "timeShift": null,
+            "title": "Transactions",
+            "type": "table"
+          },
+          {
+            "datasource": "upBank-MySQL",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "align": "center",
+                  "filterable": false
+                },
+                "decimals": 2,
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                },
+                "unit": "currencyUSD"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 18,
+              "w": 9,
+              "x": 0,
+              "y": 33
+            },
+            "id": 40,
+            "options": {
+              "showHeader": true,
+              "sortBy": [
+                {
+                  "desc": true,
+                  "displayName": "time"
+                }
+              ]
+            },
+            "pluginVersion": "7.5.7",
+            "targets": [
+              {
+                "format": "table",
+                "group": [],
+                "metricColumn": "none",
+                "rawQuery": true,
+                "rawSql": "SELECT\n  datetime AS \"time\",\n  value,\n  subCategory,\n  description\nFROM transactions\nWHERE\n  $__timeFilter(datetime) AND\n  parentCategory != 'None'\nORDER BY datetime",
+                "refId": "A",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "value"
+                      ],
+                      "type": "column"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "subCategory"
+                      ],
+                      "type": "column"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "description"
+                      ],
+                      "type": "column"
+                    }
+                  ]
+                ],
+                "table": "transactions",
+                "timeColumn": "datetime",
+                "timeColumnType": "timestamp",
+                "where": [
+                  {
+                    "name": "$__timeFilter",
+                    "params": [],
+                    "type": "macro"
+                  },
+                  {
+                    "datatype": "varchar",
+                    "name": "",
+                    "params": [
+                      "parentCategory",
+                      "!=",
+                      "'None'"
+                    ],
+                    "type": "expression"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": "14d",
+            "timeShift": null,
+            "title": "Transactions: Last 7 Days",
+            "type": "table"
+          }
+        ],
+        "title": "Transactions",
+        "type": "row"
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "Account Balance",
+    "uid": "OdGpACqMk",
+    "version": 122
+  }
