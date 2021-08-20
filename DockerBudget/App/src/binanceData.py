@@ -1,8 +1,5 @@
-import requests 
 import pandas as pd
-import numpy as np
 from datetime import datetime
-import json
 from binance.spot import Spot
 from datetime import datetime
 
@@ -21,7 +18,6 @@ class accountData():
         getBTCPrice = client.avg_price("BTCUSDT")
         accValueUSD = float(accTotalBTC)*float(getBTCPrice['price'])
         
-
     def pull_assets(self):
         # Pulls a list of assets from binance wallet.
         # Calculates wallet value in USD

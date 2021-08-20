@@ -1,7 +1,4 @@
-import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
-from mysql.connector import connect, Error
+from mysql.connector import connect
 
 class transactionDatabase():
     def __init__(self, databaseName):
@@ -17,20 +14,20 @@ class transactionDatabase():
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass)
         conn = mydb.cursor()
 
+        # Create the main database
         create_db_cmd =  "CREATE DATABASE IF NOT EXISTS transactionData;" 
         conn.execute(create_db_cmd)
         
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)
         conn = mydb.cursor()
-        # Create table: transactions
-        # mydb = connect(host="localhost", user="root", password="ironman", database = 'transactionData')
-        conn.execute('''CREATE TABLE IF NOT EXISTS transactions (transactionID VARCHAR(100) PRIMARY KEY ,datetime TIMESTAMP, value DECIMAL(10,2), description VARCHAR(255), parentCategory VARCHAR(255), subCategory VARCHAR(255))''')
+        # Create table: transactions        
+        conn.execute('''CREATE TABLE IF NOT EXISTS transactions (transactionID VARCHAR(100) PRIMARY KEY ,datetime TIMESTAMP,\
+                        value DECIMAL(10,2), description VARCHAR(255), parentCategory VARCHAR(255), subCategory VARCHAR(255))''')
 
         # Create table: accounts
         conn.execute('''CREATE TABLE IF NOT EXISTS accounts \
-        (datetime DATETIME, name VARCHAR(255), id VARCHAR(255), value DECIMAL(10,2), type VARCHAR(255))''')
+                        (datetime DATETIME, name VARCHAR(255), id VARCHAR(255), value DECIMAL(10,2), type VARCHAR(255))''')
         mydb.commit()
-        
 
         # Create table: Binance Data
         conn.execute('''CREATE TABLE IF NOT EXISTS binanceData (datetime DATETIME, asset VARCHAR(255), usd DECIMAL(10,2), free DECIMAL(10,8), locked DECIMAL(10,8))''')
@@ -43,13 +40,11 @@ class transactionDatabase():
         # Remove old data and update with most recent
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)
         conn = mydb.cursor()
-
         try:
             for i in range(len(df['id'])):                     
                 sql_delete = "DELETE FROM transactions WHERE transactionID = %s"
                 conn.execute(sql_delete, (df.id[i],))
-                mydb.commit()
-                
+                mydb.commit()                
         
         except OSError as err:
             print("Database Error: Failed to delete from database")
@@ -75,9 +70,8 @@ class transactionDatabase():
     def acc_2_db(self, df):
         # Used to track account balance with time
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)
-        conn = mydb.cursor()
+        conn = mydb.cursor()        
         
-        # print(df.dtypes)
         try:
             for i in range(len(df['id'])):
                 try:
@@ -96,10 +90,10 @@ class transactionDatabase():
             print('Account database write failed')
 
     def binance_2_db(self, df):
+        # Writes binace data into MySQL database
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)
         conn = mydb.cursor()
-        # print(df)
-        # print(df.dtypes)
+
         try:
             for i in range(len(df['asset'])):
                 try:                
@@ -114,18 +108,3 @@ class transactionDatabase():
 
         except:
             print('Binance database write failed')
-   
-def main():
-
-    db_interface = transactionDatabase('transactionData')
-
-    # fd = datetime.now()
-    # sd = fd + timedelta(days=-7)
-
-    # fd = fd.astimezone().isoformat()
-    # sd = sd.astimezone().isoformat()
-
-    # print(db_interface.pull_from_tran_db(sd, fd))
-
-if __name__ == "__main__":
-    main()
