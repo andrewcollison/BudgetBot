@@ -30,7 +30,7 @@ class transactionDatabase():
         mydb.commit()
 
         # Create table: Binance Data
-        conn.execute('''CREATE TABLE IF NOT EXISTS binanceData (datetime DATETIME, asset VARCHAR(255), usd DECIMAL(10,2), free DECIMAL(10,8), locked DECIMAL(10,8))''')
+        conn.execute('''CREATE TABLE IF NOT EXISTS binanceData (datetime DATETIME, asset VARCHAR(255), usd DECIMAL(10,2), aud DECIMAL(10,2), free DECIMAL(10,8), locked DECIMAL(10,8))''')
         mydb.commit()
         mydb.close()
 
@@ -97,8 +97,8 @@ class transactionDatabase():
         try:
             for i in range(len(df['asset'])):
                 try:                
-                    sql_command = "INSERT INTO binanceData (datetime, asset, USD, free, locked) VALUES (%s, %s , %s, %s, %s)"
-                    inst_data = (df.time[i], df.asset[i], df.USD[i], df.free[i], df.locked[i])
+                    sql_command = "INSERT INTO binanceData (datetime, asset, USD, free, locked, aud) VALUES (%s, %s , %s, %s, %s, %s)"
+                    inst_data = (df.time[i], df.asset[i], df.USD[i], df.free[i], df.locked[i], df.AUD[i])
                     conn.execute(sql_command, inst_data)
                     mydb.commit()
                     

@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 from binance.spot import Spot
 from datetime import datetime
+from currencyExchange import usd2aud
 
 class accountData():
     def __init__(self, key, secret):
@@ -36,13 +37,14 @@ class accountData():
                 assetString = asset+"USDT"
                 usdMktValue = client.avg_price(assetString)
                 usdValue = float(usdMktValue['price'])*float(free)                
-
+                audValue = usd2aud(usdValue)
                 dataItem = {
                     'time': time,
                     'asset': asset,
                     'free': str(free),
                     'locked': str(locked),
-                    'USD': str(usdValue)            
+                    'USD': str(usdValue),
+                    'AUD': str(audValue)            
                 }
                 dataList.append(dataItem)            
         
