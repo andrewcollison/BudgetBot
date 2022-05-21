@@ -7,7 +7,7 @@ class transactionDatabase():
         self.acc_db_table = 'accounts'
         self.binance_db_table = 'binanceData'
         self.db_host = "192.168.0.222"
-        self.db_port = 4306
+        self.db_port = 4307
         self.db_usr = "root"
         self.db_pass = "ironman"
 
@@ -15,7 +15,7 @@ class transactionDatabase():
         conn = mydb.cursor()
 
         # Create the main database
-        create_db_cmd =  "CREATE DATABASE IF NOT EXISTS transactionData;" 
+        create_db_cmd =  "CREATE DATABASE IF NOT EXISTS transactionDatabase;" 
         conn.execute(create_db_cmd)
         
         mydb = connect(host=self.db_host, port = self.db_port, user=self.db_usr, password=self.db_pass, database = self.tran_db_name)

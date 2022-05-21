@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import numpy as np
 from datetime import datetime
+pd.set_option('display.max_columns', None)
 
 class pullData():
     def __init__(self, token_key):
@@ -10,7 +11,7 @@ class pullData():
         
     def pull_accounts(self):        
         response = requests.get("https://api.up.com.au/api/v1/accounts", headers = self.my_headers).json()
-        # print(response)
+        print(response)
         acc_id = []
         acc_name = []
         acc_value = []
@@ -32,7 +33,7 @@ class pullData():
 
     def pull_transactions(self):
         response = requests.get("https://api.up.com.au/api/v1/transactions/?page[size]=30", headers = self.my_headers).json()
-        
+        # print(response)
         ids = []
         value = []
         date_settled = []
